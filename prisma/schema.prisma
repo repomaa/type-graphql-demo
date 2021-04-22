@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model entries {
+  id         String                    @unique @db.Uuid
+  site       String                    @db.VarChar(255)
+  origin_id  String?                   @db.VarChar(255)
+  published  Boolean                   @default(true)
+  status     String                    @db.VarChar(255)
+  slug       String                    @unique @db.VarChar(255)
+  uri        String?                   @db.VarChar(255)
+  date       String?                   @db.VarChar(255)
+  collection String                    @db.VarChar(255)
+  data       Json
+  created_at DateTime?                 @db.Timestamp(0)
+  updated_at DateTime?                 @db.Timestamp(0)
+  location   Unsupported("geography")?
+
+  @@index([collection], name: "entries_collection_index")
+  @@index([site], name: "entries_site_index")
+}
+
+model failed_jobs {
+  id         BigInt   @id @default(autoincrement())
+  connection String
+  queue      String
+  payload    String
+  exception  String
+  failed_at  DateTime @default(now()) @db.Timestamp(0)
+}
+
+model migrations {
+  id        Int    @id @default(autoincrement())
+  migration String @db.VarChar(255)
+  batch     Int
+}
+
+model spatial_ref_sys {
+  srid      Int     @id
+  auth_name String? @db.VarChar(256)
+  auth_srid Int?
+  srtext    String? @db.VarChar(2048)
+  proj4text String? @db.VarChar(2048)
+}
+
+model users {
+  id                BigInt    @id @default(autoincrement())
+  name              String    @db.VarChar(255)
+  email             String    @unique @db.VarChar(255)
+  email_verified_at DateTime? @db.Timestamp(0)
+  password          String    @db.VarChar(255)
+  remember_token    String?   @db.VarChar(100)
+  created_at        DateTime? @db.Timestamp(0)
+  updated_at        DateTime? @db.Timestamp(0)
+}

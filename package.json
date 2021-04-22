@@ -1,0 +1,38 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "repository": "https://git.meso.design/wdc26/app",
+  "author": "Joakim Repomaa",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "generate-prisma-client": "prisma generate",
+    "build": "yarn generate-prisma-client && yarn tsc",
+    "start": "NODE_PATH=dist/ node dist/index.js"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^8.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.2.1",
+    "prisma": "^2.21.2",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.21.2",
+    "apollo-server": "^2.23.0",
+    "class-validator": "^0.13.1",
+    "dataloader": "^2.0.0",
+    "graphql": "^15.5.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1",
+    "typedi": "^0.10.0"
+  }
+}
